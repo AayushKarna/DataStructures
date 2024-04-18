@@ -174,11 +174,21 @@ public:
 
   T getFront()
   {
+    if (count == 0)
+    {
+      throw std::out_of_range("Cannot retrive front from an empty list.")
+    }
+
     return head->data;
   }
 
   T getBack()
   {
+    if (count == 0)
+    {
+      throw std::out_of_range("Cannot retrive back from an empty list.")
+    }
+
     return tail->data;
   }
 

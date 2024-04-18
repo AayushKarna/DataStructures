@@ -46,7 +46,7 @@ public:
     return temp;
   }
 
-  T getTop()
+  T peek()
   {
     if (top == -1)
     {
@@ -54,6 +54,11 @@ public:
     }
 
     return A[top];
+  }
+
+  int getSize()
+  {
+    return top + 1;
   }
 
   // this print() is not a typical operation of stack, it is only for testing
