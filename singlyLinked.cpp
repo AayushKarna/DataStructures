@@ -2,50 +2,44 @@
 
 int main()
 {
-  SinglyLinkedList<int> list;
+  SinglyLinkedList<int> sll;
 
-  list.insertBack(10);
-  list.insertBack(20);
-  list.insertBack(30);
-  std::cout << "List after inserting at back: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  sll.insertBack(10);
+  sll.insertBack(20);
+  sll.insertBack(30);
+  sll.insertBack(40);
+  sll.insertFront(5);
 
-  list.insertFront(5);
-  list.insertFront(1);
-  std::cout << "List after inserting at front: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  std::cout << "Original List: ";
+  sll.display();
 
-  list.insertAt(2, 15);
-  std::cout << "List after inserting 15 at index 2: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  sll.reverse();
 
-  list.deleteFront();
-  std::cout << "List after deleting front: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  std::cout << "Reversed List: ";
+  sll.display();
 
-  list.deleteBack();
-  std::cout << "List after deleting back: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  std::cout << "Element at index 2: " << sll.getAt(2) << "\n";
 
-  list.deleteAt(2);
-  std::cout << "List after deleting element at index 2: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  sll.deleteAt(2);
 
-  list.reverse();
-  std::cout << "List after reversing: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  std::cout << "Modified List after deleting at index 2: ";
+  sll.display();
 
-  list.clearList();
-  std::cout << "List after clearing: ";
-  list.display();
-  std::cout << "Current count: " << list.getCount() << "\n";
+  sll.insertAt(2, 25);
+
+  std::cout << "Modified List after inserting 25 at index 2: ";
+  sll.display();
+
+  std::cout << "Front element: " << sll.getFront() << "\n";
+
+  std::cout << "Number of elements: " << sll.getCount() << "\n";
+
+  sll.clearList();
+
+  std::cout << "Cleared List: ";
+  sll.display();
+
+  std::cout << "Number of elements after clear: " << sll.getCount() << "\n";
 
   return 0;
 }

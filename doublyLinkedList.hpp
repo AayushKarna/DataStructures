@@ -5,6 +5,7 @@ template <typename T>
 class Node
 {
 public:
+  Node *prev = nullptr;
   T data;
   Node *next = nullptr;
 
@@ -14,14 +15,15 @@ public:
 };
 
 template <typename T>
-class SinglyLinkedList
+class DoublyLinkedList
 {
 private:
-  Node<T> *head = nullptr, *tail = nullptr;
+  Node<T> *head = nullptr;
+  Node<T> *tail = nullptr;
   int count = 0;
 
 public:
-  SinglyLinkedList() {}
+  DoublyLinkedList() {}
 
   void insertFront(T data)
   {
@@ -35,6 +37,7 @@ public:
     else
     {
       newNode->next = head;
+      head->prev = newNode;
       head = newNode;
     }
 
@@ -52,6 +55,7 @@ public:
     }
     else
     {
+      newNode->prev = tail;
       tail->next = newNode;
       tail = newNode;
     }
@@ -63,10 +67,9 @@ public:
   {
     if (index < 0 || index > count)
     {
-      throw std::out_of_range("Inserting at the given index is out of bound.");
-      return;
+      throw std::out_of_range("Inserting at given index is out of range for this list.");
     }
-    else if (count == 0)
+    else if (index == 0)
     {
       insertFront(data);
     }
@@ -74,18 +77,38 @@ public:
     {
       insertBack(data);
     }
-    else
+    else if (index <= count / 2)
     {
       Node<T> *newNode = new Node(data);
-
       Node<T> *temp = head;
+
       for (int i = 0; i < index - 1; i++)
       {
         temp = temp->next;
       }
 
       newNode->next = temp->next;
+      newNode->prev = temp;
+      newNode->next->prev = newNode;
       temp->next = newNode;
+
+      count++;
+    }
+    else
+    {
+      Node<T> *newNode = new Node(data);
+      Node<T> *temp = tail;
+
+      for (int i = count - 1; i > index; i--)
+      {
+        temp = temp->prev;
+      }
+
+      newNode->prev = temp->prev;
+      newNode->next = temp;
+      newNode->prev->next = newNode;
+      temp->prev = newNode;
+
       count++;
     }
   }
@@ -106,8 +129,11 @@ public:
     else
     {
       Node<T> *firstNode = head;
+
       head = firstNode->next;
+      head->prev = nullptr;
       delete firstNode;
+
       count--;
     }
   }
@@ -127,15 +153,10 @@ public:
     }
     else
     {
-      Node<T> *temp = head;
-      while (temp->next != tail)
-      {
-        temp = temp->next;
-      }
-
-      delete tail;
-      tail = temp;
+      Node<T> *lastNode = tail;
+      tail = lastNode->prev;
       tail->next = nullptr;
+      delete lastNode;
 
       count--;
     }
@@ -145,10 +166,9 @@ public:
   {
     if (index < 0 || index >= count)
     {
-      throw std::out_of_range("Index is out of range!");
-      return;
+      throw std::out_of_range("Deletion of the element at given index is out of range.");
     }
-    else if (index == 0)
+    else if (count == 1)
     {
       deleteFront();
     }
@@ -156,7 +176,7 @@ public:
     {
       deleteBack();
     }
-    else
+    else if (index <= count / 2)
     {
       Node<T> *temp = head;
 
@@ -165,9 +185,29 @@ public:
         temp = temp->next;
       }
 
-      Node<T> *indexNode = temp->next;
-      temp->next = indexNode->next;
-      delete indexNode;
+      Node<T> *deletingNode = temp->next;
+      temp->next = deletingNode->next;
+      deletingNode->next->prev = temp;
+
+      delete deletingNode;
+
+      count--;
+    }
+    else
+    {
+      Node<T> *temp = tail;
+
+      for (int i = count - 1; i > index; i--)
+      {
+        temp = temp->prev;
+      }
+
+      Node<T> *deletingNode = temp->prev;
+      temp->prev = deletingNode->prev;
+      deletingNode->prev->next = temp;
+
+      delete deletingNode;
+
       count--;
     }
   }
@@ -184,11 +224,7 @@ public:
 
   T getAt(int index)
   {
-    if (index < 0 || index >= count)
-    {
-      throw std::out_of_range("Index is out of range!");
-    }
-    else if (index == 0)
+    if (index == 0)
     {
       return getFront();
     }
@@ -196,12 +232,24 @@ public:
     {
       return getBack();
     }
-    else
+    else if (index <= count / 2)
     {
       Node<T> *temp = head;
+
       for (int i = 0; i < index; i++)
       {
         temp = temp->next;
+      }
+
+      return temp->data;
+    }
+    else
+    {
+      Node<T> *temp = tail;
+
+      for (int i = count; i > index; i--)
+      {
+        temp = temp->prev;
       }
 
       return temp->data;
@@ -224,6 +272,7 @@ public:
     while (current != nullptr)
     {
       next = current->next;
+      current->prev = next;
       current->next = prev;
       prev = current;
       current = next;
@@ -235,6 +284,7 @@ public:
   void display()
   {
     Node<T> *temp = head;
+
     while (temp != nullptr)
     {
       std::cout << temp->data << " ";
