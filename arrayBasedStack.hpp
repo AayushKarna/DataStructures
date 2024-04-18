@@ -54,6 +54,7 @@ public:
     return A[top];
   }
 
+  // this print() is not a typical operation of stack, it is only for testing
   void print()
   {
     for (int i = 0; i <= top; i++)
