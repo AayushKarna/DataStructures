@@ -34,14 +34,16 @@ public:
     A[++top] = data;
   }
 
-  void pop()
+  T pop()
   {
     if (top == -1)
     {
       throw std::out_of_range("Cannot pop from an empty stack");
     }
 
+    T temp = A[top];
     top--;
+    return temp;
   }
 
   T getTop()
