@@ -61,6 +61,11 @@ public:
     return top + 1;
   }
 
+  void clear()
+  {
+    top = -1;
+  }
+
   // this print() is not a typical operation of stack, it is only for testing. It prints from bottom to top
   void print()
   {
