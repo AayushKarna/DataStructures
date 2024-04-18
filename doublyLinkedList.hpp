@@ -25,6 +25,11 @@ private:
 public:
   DoublyLinkedList() {}
 
+  ~DoublyLinkedList()
+  {
+    clear();
+  }
+
   void insertFront(T data)
   {
     Node<T> *newNode = new Node(data);

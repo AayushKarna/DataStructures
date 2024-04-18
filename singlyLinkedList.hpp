@@ -23,6 +23,11 @@ private:
 public:
   SinglyLinkedList() {}
 
+  ~SinglyLinkedList()
+  {
+    clear();
+  }
+
   void insertFront(T data)
   {
     Node<T> *newNode = new Node(data);
