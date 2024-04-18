@@ -262,21 +262,29 @@ public:
   void clear()
   {
     if (count == 0)
-      return;
-
-    Node<T> *temp = head;
-    Node<T> *deletingNode = nullptr;
-
-    while (temp != nullptr)
     {
-      deletingNode = temp;
-      temp = temp->next;
-      delete deletingNode;
+      return;
     }
+    else if (count == 1)
+    {
+      deleteFront();
+    }
+    else
+    {
+      Node<T> *temp = head;
+      Node<T> *deletingNode = nullptr;
 
-    head = nullptr;
-    tail = nullptr;
-    count = 0;
+      while (temp != nullptr)
+      {
+        deletingNode = temp;
+        temp = temp->next;
+        delete deletingNode;
+      }
+
+      head = nullptr;
+      tail = nullptr;
+      count = 0;
+    }
   }
 
   int getCount()
