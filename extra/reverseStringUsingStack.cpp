@@ -10,6 +10,12 @@ void reverseString(char *str)
   }
 
   int i = 0;
+  while (!characterStack.isEmpty())
+  {
+    str[i++] = characterStack.pop();
+  }
+
+  str[i] = '\0';
 }
 
 int main()
