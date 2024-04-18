@@ -35,12 +35,16 @@ int main()
 
   std::cout << "Number of elements: " << dll.getCount() << "\n";
 
+  std::cout << "Is the list empty? " << (dll.isEmpty() ? "Yes" : "No") << "\n";
+
   dll.clearList();
 
   std::cout << "Cleared List: ";
   dll.display();
 
   std::cout << "Number of elements after clear: " << dll.getCount() << "\n";
+
+  std::cout << "Is the list empty after clear? " << (dll.isEmpty() ? "Yes" : "No") << "\n";
 
   return 0;
 }

@@ -34,12 +34,16 @@ int main()
 
   std::cout << "Number of elements: " << sll.getCount() << "\n";
 
+  std::cout << "Is the list empty? " << (sll.isEmpty() ? "Yes" : "No") << "\n";
+
   sll.clearList();
 
   std::cout << "Cleared List: ";
   sll.display();
 
   std::cout << "Number of elements after clear: " << sll.getCount() << "\n";
+
+  std::cout << "Is the list empty after clear? " << (sll.isEmpty() ? "Yes" : "No") << "\n";
 
   return 0;
 }

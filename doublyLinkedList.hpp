@@ -315,4 +315,9 @@ public:
   {
     return count;
   }
+
+  bool isEmpty()
+  {
+    return count == 0;
+  }
 };
