@@ -9,6 +9,11 @@ private:
 public:
   Stack() {}
 
+  ~Stack()
+  {
+    clear();
+  }
+
   void push(T data)
   {
     list.insertFront(data);
@@ -44,6 +49,11 @@ public:
   int getSize()
   {
     return list.getCount();
+  }
+
+  void clear()
+  {
+    list.clear();
   }
 
   // this print is not a typical operation of stack, it is only for testing, it prints stack from top to bottom
