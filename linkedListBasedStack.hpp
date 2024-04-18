@@ -46,6 +46,7 @@ public:
     return list.getCount();
   }
 
+  // this print is not a typical operation of stack, it is only for testing, it prints stack from top to bottom
   void print()
   {
     list.display();
