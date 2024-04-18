@@ -216,7 +216,7 @@ public:
   {
     if (count == 0)
     {
-      throw std::out_of_range("Cannot retrive front from an empty list.")
+      throw std::out_of_range("Cannot retrive front from an empty list.");
     }
     return head->data;
   }
@@ -225,7 +225,7 @@ public:
   {
     if (count == 0)
     {
-      throw std::out_of_range("Cannot retrive back from an empty list.")
+      throw std::out_of_range("Cannot retrive back from an empty list.");
     }
 
     return tail->data;

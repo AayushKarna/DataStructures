@@ -1,4 +1,4 @@
-#include "singlyLinkedList.hpp";
+#include "singlyLinkedList.hpp"
 
 template <typename T>
 class Stack
@@ -11,7 +11,7 @@ public:
 
   void push(T data)
   {
-    list.addFront(data);
+    list.insertFront(data);
   }
 
   T pop()
