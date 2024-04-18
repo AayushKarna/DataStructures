@@ -261,6 +261,9 @@ public:
 
   void clear()
   {
+    if (count == 0)
+      return;
+
     Node<T> *temp = head;
     Node<T> *deletingNode = nullptr;
 
