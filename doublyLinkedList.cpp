@@ -37,7 +37,7 @@ int main()
 
   std::cout << "Is the list empty? " << (dll.isEmpty() ? "Yes" : "No") << "\n";
 
-  dll.clearList();
+  dll.clear();
 
   std::cout << "Cleared List: ";
   dll.display();

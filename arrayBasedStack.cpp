@@ -12,15 +12,21 @@ int main()
 
     std::cout << "Top element is: " << intStack.peek() << "\n";
 
+    intStack.clear();
+    intStack.print();
+    std::cout << "Size of stack after clear is: " << intStack.getSize() << "\n";
+
+    intStack.push(4);
+    intStack.push(5);
+    intStack.print();
+
     intStack.pop();
     intStack.print();
 
     std::cout << "Size of stack is: " << intStack.getSize() << "\n";
 
     intStack.pop();
-    intStack.pop();
     intStack.print();
-    std::cout << "Size of stack is: " << intStack.getSize() << "\n";
 
     intStack.pop();
   }

@@ -303,7 +303,7 @@ public:
     std::cout << "\n";
   }
 
-  void clearList()
+  void clear()
   {
     Node<T> *temp = head;
     Node<T> *deletingNode = nullptr;

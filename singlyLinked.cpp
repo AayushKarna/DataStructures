@@ -36,7 +36,7 @@ int main()
 
   std::cout << "Is the list empty? " << (sll.isEmpty() ? "Yes" : "No") << "\n";
 
-  sll.clearList();
+  sll.clear();
 
   std::cout << "Cleared List: ";
   sll.display();
