@@ -41,6 +41,7 @@ int evaluatePostfix(std::string exp)
 
   Stack<int> operandStack;
 
+  // Expression may contain comma ',', so replace them with empty space
   for (char &c : exp)
   {
     if (c == ',')
@@ -103,6 +104,7 @@ int evaluatePostfix(std::string exp)
     exp.erase(0, pos + delimiter.length());
   }
 
+  // last expression is same as the other in the loop, can make a function to do so later.
   if (!exp.empty())
   {
     if (exp == "/" || exp == "*" || exp == "+" || exp == "-")
