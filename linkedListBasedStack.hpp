@@ -62,6 +62,7 @@ public:
     if (list.getCount() == 0)
     {
       std::cout << "Stack is empty.\n";
+      return;
     }
 
     list.display();
