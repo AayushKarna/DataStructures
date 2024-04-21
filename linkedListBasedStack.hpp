@@ -59,6 +59,11 @@ public:
   // this print is not a typical operation of stack, it is only for testing, it prints stack from top to bottom
   void print()
   {
+    if (list.getCount() == 0)
+    {
+      std::cout << "Stack is empty.\n";
+    }
+
     list.display();
   }
 };

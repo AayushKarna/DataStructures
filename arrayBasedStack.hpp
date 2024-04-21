@@ -74,6 +74,12 @@ public:
   // this print() is not a typical operation of stack, it is only for testing. It prints from bottom to top
   void print()
   {
+    if (top == -1)
+    {
+      std::cout << "Stack is empty.\n";
+      return;
+    }
+
     for (int i = 0; i <= top; i++)
     {
       std::cout << A[i] << " ";
