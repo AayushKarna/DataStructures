@@ -69,29 +69,29 @@ int evaluatePostfix(std::string exp)
         }
         else
         {
-          int operand1 = operandStack.pop();
           int operand2 = operandStack.pop();
+          int operand1 = operandStack.pop();
 
-          if (token == "/" && operand1 == 0)
+          if (token == "/" && operand2 == 0)
           {
             throw std::domain_error("Division by zero error.");
           }
 
           if (token == "/")
           {
-            operandStack.push(operand2 / operand1);
+            operandStack.push(operand1 / operand2);
           }
           else if (token == "*")
           {
-            operandStack.push(operand2 * operand1);
+            operandStack.push(operand1 * operand2);
           }
           else if (token == "+")
           {
-            operandStack.push(operand2 + operand1);
+            operandStack.push(operand1 + operand2);
           }
           else
           {
-            operandStack.push(operand2 - operand1);
+            operandStack.push(operand1 - operand2);
           }
         }
       }
