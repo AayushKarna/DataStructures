@@ -8,6 +8,8 @@ private:
   Node<T> *right = nullptr;
   T data;
 
+  friend class BinarySearchTree<T>;
+
 public:
   Node() {}
 
@@ -25,7 +27,7 @@ private:
   {
     if (node == nullptr)
     {
-      node = new Node(data);
+      node = new Node<T>(data);
     }
     else if (data <= node->data)
     {
@@ -39,7 +41,7 @@ private:
 
   Node<T> *find(Node<T> *node, T data)
   {
-    if (count == 0)
+    if (node == nullptr)
     {
       return nullptr;
     }
@@ -57,42 +59,82 @@ private:
     }
   }
 
-public:
-  BinarySearchTree() {}
-
-  void insert(T data)
+  Node<T> *getMinNode(Node<T> *node)
   {
-    if (count == 0)
+    if (node == nullptr)
     {
-      root = new Node(data);
-    }
-    else
-    {
-      insert(root, data);
-    }
-
-    count++;
-  }
-
-  T getMin(Node<T> *node)
-  {
-    if (count == 0)
-    {
-      throw std::out_of_range("Binary Search Tree is empty.");
+      throw std::out_of_range("Binary search tree is empty.");
     }
     else if (node->left == nullptr)
     {
-      return node->data;
+      return node;
     }
     else
     {
-      return getMin(node->left);
+      return getMinNode(node->left);
     }
+  }
+
+  Node<T> *getMaxMode(Node<T> *node)
+  {
+    if (node == nullptr)
+    {
+      throw std::out_of_range("Binary search tree is empty.")
+    }
+    else if (node->right == nullptr)
+    {
+      return node;
+    }
+    else
+    {
+      return getMaxMode(node->right);
+    }
+  }
+
+public:
+  BinarySearchTree()
+  {
+  }
+
+  void insert(T data)
+  {
+    insert(root, data);
+    count++;
+  }
+
+  bool exists(T data)
+  {
+    return find(root, data) != nullptr;
+  }
+
+  // T find(T data)
+  // {
+  //   Node<T> *result = find(root, data);
+
+  //   return (result == nullptr) ? nullptr : result->data;
+  // }
+
+  bool find(T data, T *output)
+  {
+    Node<T> *result = find(root, data);
+
+    if (result != nullptr)
+    {
+      *output = result->data;
+      return true;
+    }
+
+    return false;
+  }
+
+  T getMin()
+  {
+    Node<T> *minNode = getMinNode(root);
   }
 
   T getMax(Node<T> *node)
   {
-    if (count == 0)
+    if (node == nullptr)
     {
       throw std::out_of_range("Binary Search Tree is empty.");
     }
@@ -114,8 +156,8 @@ public:
     }
     else
     {
-      int leftHeight = height(node->right);
-      int rightHeight = height(node->left);
+      int leftHeight = height(node->left);
+      int rightHeight = height(node->right);
 
       return ((leftHeight > rightHeight) ? leftHeight : rightHeight) + 1;
     }
@@ -128,7 +170,7 @@ public:
       std::cout << "Empty Binary Search Tree\n";
     }
 
-    Queue<Node<T> *> q;
+    Queue<Node<T> *> q(count);
     q.enqueue(root);
 
     while (!q.isEmpty())
@@ -139,9 +181,9 @@ public:
       if (current->left != nullptr)
         q.enqueue(current->left);
       if (current->right != nullptr)
-        q.push(current->right);
+        q.enqueue(current->right);
 
-      q.pop();
+      q.dequeue();
     }
   }
 };

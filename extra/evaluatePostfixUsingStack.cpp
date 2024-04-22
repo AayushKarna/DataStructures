@@ -160,19 +160,13 @@ int main()
 {
   try
   {
-    std::cout << evaluatePostfix("3 4 +") << "\n"; // 7
-
+    std::cout << evaluatePostfix("3 4 +") << "\n";             // 7
     std::cout << evaluatePostfix("5 1 2 + 4 * + 3 -") << "\n"; // 14
-
-    std::cout << evaluatePostfix("12 3 - 2 * 8 +") << "\n"; // 26
-
-    std::cout << evaluatePostfix("10 4 - 1 -") << "\n"; // 5
-
-    std::cout << evaluatePostfix("100 10 / 5 /") << "\n"; // 2
-
-    std::cout << evaluatePostfix("6 -3 +") << "\n"; // 3
-
-    std::cout << evaluatePostfix("10 0 /") << "\n"; // division by 0 error
+    std::cout << evaluatePostfix("12 3 - 2 * 8 +") << "\n";    // 26
+    std::cout << evaluatePostfix("10 4 - 1 -") << "\n";        // 5
+    std::cout << evaluatePostfix("100 10 / 5 /") << "\n";      // 2
+    std::cout << evaluatePostfix("6 -3 +") << "\n";            // 3
+    std::cout << evaluatePostfix("10 0 /") << "\n";            // division by 0 error
   }
   catch (const std::exception &e)
   {
