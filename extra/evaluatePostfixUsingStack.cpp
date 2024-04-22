@@ -104,7 +104,8 @@ int evaluatePostfix(std::string exp)
     exp.erase(0, pos + delimiter.length());
   }
 
-  // last expression is same as the other in the loop, can make a function to do so later.
+  // last expression is always an operator, and it also need to perform same aactions in front
+  // TODO: make a function to abstract repeating part
   if (!exp.empty())
   {
     if (exp == "/" || exp == "*" || exp == "+" || exp == "-")
