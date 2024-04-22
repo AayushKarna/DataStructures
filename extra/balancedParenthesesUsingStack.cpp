@@ -3,7 +3,7 @@ Defination:
   parentheses: () or {} or []
   expression: any string containing letters, symbols, numbers
 
-When a condition for balanced parentheses to occur?
+When a condition for balanced parentheses occur?
 => For given expression, for all opening prentheses ('(', '{; or '[') there exists corresponding closing parentheses.
 
 Why useful?
@@ -17,12 +17,12 @@ Expression-->isBalanced
 [2*3]+(A)] --> false
 {a+z) --> false
 
-)( --> false (this shows that no of opening brac = no of closing brac will not solve it
+)( --> false (this shows that no of opening brac = no of closing brac will not solve it)
 [()] --> true
 [(]) --> fasle
 
 Properties for balanced parentheses:
-1) Number of opening one type of parentheses == Number of corresponding type of closing parentheses; where opening type must be one of (, [ or {
+1) Number of opening of one type of parentheses == Number of closing corresponding type parentheses; where opening type must be one of (, [ or {
 2) Every opening parentheses must find a closing counterpart to its right
 3) Every closing parentheses must find an opening counterpart to its left
 4) *IMPORTANT*: Last unclosed, first closed [HERE WE CAN USE STACK]
