@@ -5,9 +5,9 @@ template <typename T>
 class Node
 {
 public:
-  Node *prev = nullptr;
+  Node<T> *prev = nullptr;
   T data;
-  Node *next = nullptr;
+  Node<T> *next = nullptr;
 
   Node() {}
 

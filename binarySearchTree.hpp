@@ -1,11 +1,11 @@
-#include <iostream>
+#include "arrayBasedQueue.hpp"
 
 template <typename T>
 class Node
 {
 private:
-  Node *left = nullptr;
-  Node *right = nullptr;
+  Node<T> *left = nullptr;
+  Node<T> *right = nullptr;
   T data;
 
 public:
@@ -39,7 +39,7 @@ private:
 
   Node<T> *find(Node<T> *node, T data)
   {
-    if (node == nullptr)
+    if (count == 0)
     {
       return nullptr;
     }
@@ -74,7 +74,74 @@ public:
     count++;
   }
 
-  Node<T> *find(T data)
+  T getMin(Node<T> *node)
   {
+    if (count == 0)
+    {
+      throw std::out_of_range("Binary Search Tree is empty.");
+    }
+    else if (node->left == nullptr)
+    {
+      return node->data;
+    }
+    else
+    {
+      return getMin(node->left);
+    }
+  }
+
+  T getMax(Node<T> *node)
+  {
+    if (count == 0)
+    {
+      throw std::out_of_range("Binary Search Tree is empty.");
+    }
+    else if (node->right == nullptr)
+    {
+      return node->data;
+    }
+    else
+    {
+      return getMax(node->right);
+    }
+  }
+
+  int height(Node<T> *node)
+  {
+    if (node == nullptr)
+    {
+      return -1;
+    }
+    else
+    {
+      int leftHeight = height(node->right);
+      int rightHeight = height(node->left);
+
+      return ((leftHeight > rightHeight) ? leftHeight : rightHeight) + 1;
+    }
+  }
+
+  void levelOrderTraversal()
+  {
+    if (count == 0)
+    {
+      std::cout << "Empty Binary Search Tree\n";
+    }
+
+    Queue<Node<T> *> q;
+    q.enqueue(root);
+
+    while (!q.isEmpty())
+    {
+      Node<T> *current = q.front();
+      std::cout << current->data << " ";
+
+      if (current->left != nullptr)
+        q.enqueue(current->left);
+      if (current->right != nullptr)
+        q.push(current->right);
+
+      q.pop();
+    }
   }
 };

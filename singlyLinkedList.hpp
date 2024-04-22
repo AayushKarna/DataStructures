@@ -6,7 +6,7 @@ class Node
 {
 public:
   T data;
-  Node *next = nullptr;
+  Node<T> *next = nullptr;
 
   Node() {}
 
