@@ -61,91 +61,12 @@ private:
 
   Node<T> *getMinNode(Node<T> *node)
   {
-    if (node == nullptr)
-    {
-      throw std::out_of_range("Binary search tree is empty.");
-    }
-    else if (node->left == nullptr)
-    {
-      return node;
-    }
-    else
-    {
-      return getMinNode(node->left);
-    }
+    return node->left ? getMinNode(node->left) : node;
   }
 
-  Node<T> *getMaxMode(Node<T> *node)
+  Node<T> *getMaxNode(Node<T> *node)
   {
-    if (node == nullptr)
-    {
-      throw std::out_of_range("Binary search tree is empty.")
-    }
-    else if (node->right == nullptr)
-    {
-      return node;
-    }
-    else
-    {
-      return getMaxMode(node->right);
-    }
-  }
-
-public:
-  BinarySearchTree()
-  {
-  }
-
-  void insert(T data)
-  {
-    insert(root, data);
-    count++;
-  }
-
-  bool exists(T data)
-  {
-    return find(root, data) != nullptr;
-  }
-
-  // T find(T data)
-  // {
-  //   Node<T> *result = find(root, data);
-
-  //   return (result == nullptr) ? nullptr : result->data;
-  // }
-
-  bool find(T data, T *output)
-  {
-    Node<T> *result = find(root, data);
-
-    if (result != nullptr)
-    {
-      *output = result->data;
-      return true;
-    }
-
-    return false;
-  }
-
-  T getMin()
-  {
-    Node<T> *minNode = getMinNode(root);
-  }
-
-  T getMax(Node<T> *node)
-  {
-    if (node == nullptr)
-    {
-      throw std::out_of_range("Binary Search Tree is empty.");
-    }
-    else if (node->right == nullptr)
-    {
-      return node->data;
-    }
-    else
-    {
-      return getMax(node->right);
-    }
+    return node->right ? getMaxNode(node->right) : node;
   }
 
   int height(Node<T> *node)
@@ -161,6 +82,60 @@ public:
 
       return ((leftHeight > rightHeight) ? leftHeight : rightHeight) + 1;
     }
+  }
+
+public:
+  BinarySearchTree()
+  {
+  }
+
+  void insert(T data)
+  {
+    insert(root, data);
+    count++;
+  }
+
+  bool find(T data, T *output)
+  {
+    Node<T> *result = find(root, data);
+
+    if (result != nullptr)
+    {
+      *output = result->data;
+      return true;
+    }
+
+    return false;
+  }
+
+  bool exists(T data)
+  {
+    return find(root, data) != nullptr;
+  }
+
+  T getMin()
+  {
+    if (root == nullptr)
+    {
+      throw std::out_of_range("Binary search tree is empty.");
+    }
+
+    return getMinNode(root)->data;
+  }
+
+  T getMax()
+  {
+    if (root == nullptr)
+    {
+      throw std::out_of_range("Binary search tree is empty.");
+    }
+
+    return getMaxNode(root)->data;
+  }
+
+  int height()
+  {
+    return height(root);
   }
 
   void levelOrderTraversal()
