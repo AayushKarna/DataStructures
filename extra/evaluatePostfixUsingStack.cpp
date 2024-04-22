@@ -146,7 +146,6 @@ int evaluatePostfix(std::string exp)
     }
   }
 
-  // std::cout << exp << "\n";
   if (operandStack.getSize() == 1)
   {
     return operandStack.pop();
