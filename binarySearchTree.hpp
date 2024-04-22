@@ -138,9 +138,11 @@ public:
     return height(root);
   }
 
+  // TODO: delete, depth-first traversal
+
   void levelOrderTraversal()
   {
-    if (count == 0)
+    if (root == nullptr)
     {
       std::cout << "Empty Binary Search Tree\n";
     }
