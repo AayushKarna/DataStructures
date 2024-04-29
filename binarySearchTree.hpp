@@ -3,14 +3,11 @@
 template <typename T>
 class Node
 {
-private:
+public:
   Node<T> *left = nullptr;
   Node<T> *right = nullptr;
   T data;
 
-  friend class BinarySearchTree<T>;
-
-public:
   Node() {}
 
   Node(T data) : data(data) {}
@@ -84,10 +81,29 @@ private:
     }
   }
 
-public:
-  BinarySearchTree()
+  void preOrderTraversal(Node<T> *root)
   {
+    std::cout << root->data << " ";
+    preOrderTraversal(root->left);
+    preOrderTraversal(root->right);
   }
+
+  void inOrderTraversal(Node<T> *root)
+  {
+    inOrderTraversal(root->left);
+    std::cout << root->data;
+    inOrderTraversal(root->right);
+  }
+
+  void postOrderTraversal(Node<T> *root)
+  {
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    std::cout << root->data;
+  }
+
+public:
+  BinarySearchTree() {}
 
   void insert(T data)
   {
@@ -139,6 +155,21 @@ public:
   }
 
   // TODO: delete, depth-first traversal
+
+  void preOrderTraversal()
+  {
+    preOrderTraversal(root);
+  }
+
+  void inOrderTraversal()
+  {
+    inOrderTraversal(root);
+  }
+
+  void postOrderTraversal()
+  {
+    postOrderTraversal(root);
+  }
 
   void levelOrderTraversal()
   {
