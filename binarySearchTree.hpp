@@ -24,7 +24,7 @@ private:
   {
     if (node == nullptr)
     {
-      node = new Node<T>(data);
+      node = new Node(data);
     }
     else if (data <= node->data)
     {
@@ -39,20 +39,19 @@ private:
   Node<T> *find(Node<T> *node, T data)
   {
     if (node == nullptr)
-    {
       return nullptr;
-    }
-    else if (node->data == data)
+
+    if (node->data == data)
     {
       return node;
     }
-    else if (data < node->data)
+    else if (node->data < data)
     {
-      return find(node->left, data);
+      return find(node->right, data);
     }
     else
     {
-      return find(node->right, data);
+      return find(node->left, data);
     }
   }
 
@@ -66,109 +65,83 @@ private:
     return node->right ? getMaxNode(node->right) : node;
   }
 
-  int height(Node<T> *node)
+  int findHeight(Node<T> *node)
   {
     if (node == nullptr)
-    {
       return -1;
-    }
-    else
-    {
-      int leftHeight = height(node->left);
-      int rightHeight = height(node->right);
 
-      return ((leftHeight > rightHeight) ? leftHeight : rightHeight) + 1;
-    }
+    int leftHeight = findHeight(node->left);
+    int rightHeight = findHeight(node->right);
+    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
   }
 
-  void preOrderTraversal(Node<T> *root)
+  void inOrderTraversal(Node<T> *node)
   {
-    std::cout << root->data << " ";
-    preOrderTraversal(root->left);
-    preOrderTraversal(root->right);
+    if (node == nullptr)
+      return;
+    inOrderTraversal(node->left);
+    std::cout << node->data << " ";
+    inOrderTraversal(node->right);
   }
 
-  void inOrderTraversal(Node<T> *root)
+  void preOrderTraversal(Node<T> *node)
   {
-    inOrderTraversal(root->left);
-    std::cout << root->data;
-    inOrderTraversal(root->right);
+    if (node == nullptr)
+      return;
+    std::cout << node->data << " ";
+    preOrderTraversal(node->left);
+    preOrderTraversal(node->right);
   }
 
-  void postOrderTraversal(Node<T> *root)
+  void postOrderTraversal(Node<T> *node)
   {
-    postOrderTraversal(root->left);
-    postOrderTraversal(root->right);
-    std::cout << root->data;
+    if (node == nullptr)
+      return;
+
+    postOrderTraversal(node->left);
+    postOrderTraversal(node->right);
+    std::cout << node->data << " ";
   }
 
 public:
-  BinarySearchTree() {}
-
   void insert(T data)
   {
     insert(root, data);
     count++;
   }
 
-  bool find(T data, T *output)
-  {
-    Node<T> *result = find(root, data);
-
-    if (result != nullptr)
-    {
-      *output = result->data;
-      return true;
-    }
-
-    return false;
-  }
-
   bool exists(T data)
   {
-    return find(root, data) != nullptr;
+    return find(root, data) ? true : false;
   }
 
   T getMin()
   {
     if (root == nullptr)
     {
-      throw std::out_of_range("Binary search tree is empty.");
+      throw std::out_of_range("Empty Binary Search Tree!");
     }
-
-    return getMinNode(root)->data;
+    else
+    {
+      return getMinNode(root)->data;
+    }
   }
 
   T getMax()
   {
     if (root == nullptr)
     {
-      throw std::out_of_range("Binary search tree is empty.");
+      throw std::out_of_range("Empty Binary Search Tree!");
     }
-
-    return getMaxNode(root)->data;
+    else
+    {
+      return getMaxNode(root)->data;
+    }
   }
 
-  int height()
+  int getHeight()
   {
-    return height(root);
-  }
-
-  // TODO: delete, depth-first traversal
-
-  void preOrderTraversal()
-  {
-    preOrderTraversal(root);
-  }
-
-  void inOrderTraversal()
-  {
-    inOrderTraversal(root);
-  }
-
-  void postOrderTraversal()
-  {
-    postOrderTraversal(root);
+    return findHeight(root);
   }
 
   void levelOrderTraversal()
@@ -179,6 +152,7 @@ public:
     }
 
     Queue<Node<T> *> q(count);
+
     q.enqueue(root);
 
     while (!q.isEmpty())
@@ -192,6 +166,41 @@ public:
         q.enqueue(current->right);
 
       q.dequeue();
+    }
+  }
+
+  void inOrderTraversal()
+  {
+    if (root == nullptr)
+    {
+      std::cout << "Empty Binary Search Tree" << "\n";
+    }
+    else
+    {
+      inOrderTraversal(root);
+    }
+  }
+
+  void preOrderTraversal()
+  {
+    if (root == nullptr)
+    {
+      std::cout << "Empty Binary Search Tree" << "\n";
+    }
+    else
+    {
+      preOrderTraversal(root);
+    }
+  }
+  void postOrderTraversal()
+  {
+    if (root == nullptr)
+    {
+      std::cout << "Empty Binary Search Tree" << "\n";
+    }
+    else
+    {
+      postOrderTraversal(root);
     }
   }
 };

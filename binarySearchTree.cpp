@@ -13,11 +13,12 @@ int main()
   bst.insert(80);
 
   std::cout << "Does 40 exist in the tree? " << (bst.exists(40) ? "Yes" : "No") << "\n";
+  std::cout << "Does 28 exist in the tree? " << (bst.exists(28) ? "Yes" : "No") << "\n";
 
   std::cout << "Minimum value in BST: " << bst.getMin() << "\n";
   std::cout << "Maximum value in BST: " << bst.getMax() << "\n";
 
-  std::cout << "Height of the BST: " << bst.height() << "\n";
+  std::cout << "Height of the BST: " << bst.getHeight() << "\n";
 
   std::cout << "Pre-order traversal: ";
   bst.preOrderTraversal();
